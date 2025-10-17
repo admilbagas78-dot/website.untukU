@@ -1,0 +1,185 @@
+body {
+  background-color: #f0e6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+.envelope-wrapper {
+  height: 380px;
+}
+
+#envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #d9534f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  top: 100px;
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  border-top: 98px solid #d9534f;
+  transform-origin: top;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.pocket {
+  border-left: 140px solid #f5a3a2;
+  border-right: 140px solid #f5a3a2;
+  border-bottom: 90px solid #ff6f61;
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  z-index: 3;
+}
+
+.letter {
+  position: relative;
+  background-color: #fff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+  font-family: "Dancing Script", cursive;
+  z-index: 2;
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+  color: #d9534f;
+}
+
+.words.line1 { top: 10%; font-size: 1rem; }
+.words.line2 { top: 30%; font-size: 1.1rem; }
+.words.line3 { top: 50%; font-size: 1.2rem; }
+.words.line4 { top: 70%; font-size: 1rem; }
+
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease, z-index 0.6s;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 1s;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .letter {
+  transform: translateY(-100px);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  z-index: 2;
+}
+
+/* BEARS (menggantikan hearts) */
+.hearts {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* .bear adalah container untuk emoji beruang */
+.bear {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  font-size: 2rem; /* ukuran emoji, ubah sesuai selera */
+  transform-origin: center;
+}
+
+/* variasi posisi dan ukuran */
+.a1 { left: 20%; transform: scale(0.9); }
+.a2 { left: 55%; transform: scale(1.1); }
+.a3 { left: 10%; transform: scale(0.8); }
+
+/* sembunyikan saat tertutup */
+.close .bear {
+  opacity: 0;
+  animation: none;
+}
+
+/* ketika terbuka, .bear akan naik */
+.a1 {
+  animation: slideUpBear 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.4s;
+}
+.a2 {
+  animation: slideUpBear 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.6s;
+}
+.a3 {
+  animation: slideUpBear 6s linear 1, sideSway 3s ease-in-out 6 alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes slideUpBear {
+  0% { top: 0; opacity: 1; transform: translateY(0) scale(1); }
+  60% { opacity: 1; }
+  100% { top: -420px; opacity: 0; transform: translateY(-20px) scale(0.8); }
+}
+
+@keyframes sideSway {
+  0% { margin-left: 0px; }
+  100% { margin-left: 50px; }
+}
+
+/* Reset button styling */
+.reset {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.reset button {
+  font-weight: 800;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
